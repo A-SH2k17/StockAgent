@@ -76,14 +76,12 @@ def get_stock_info(ticker: str) -> dict:
 #Function to get stock news
 @tool
 def get_stock_news(stock_symbol: str, 
-                   finnhub_key: str = os.getenv("FINNHUB_API_KEY"),
                    target_count: int = 100) -> List[Dict]:
     """
     Fetch news about a stock from finhub.
     
     Args:
         stock_symbol: Stock ticker symbol (e.g., 'AAPL', 'TSLA')
-        finnhub_key: API key from finnhub.io
         target_count: Target number of news items to return (default: 100)
     
     Returns:
@@ -92,7 +90,7 @@ def get_stock_news(stock_symbol: str,
     stock_symbol = stock_symbol.upper()
     all_news = []
 
-    
+    finnhub_key = os.getenv("FINNHUB_API_KEY")
     # Fetch from Finnhub
     if finnhub_key:
         url = "https://finnhub.io/api/v1/company-news"
